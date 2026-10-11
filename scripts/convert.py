@@ -140,7 +140,10 @@ def node_text(el):
     raw = etree.tostring(el, encoding=str, with_tail=False)
     parts = CDATA.findall(raw)
     if parts:
-        return "".join(parts)
+        t = "".join(parts)
+        if "&lt;" in t or "&gt;" in t:
+            t = t.replace("&lt;", "<").replace("&gt;", ">")
+        return t
     return "".join(el.itertext())
 
 
@@ -264,8 +267,8 @@ def render_plain(text, indent=""):
 
 
 # ---------------------------------------------------------------- structure
-UNIT_RE = re.compile(r"^제\s*\d+\s*(?:의\s*\d+\s*)?(편|장|절|관)(?![가-힣])")
-UNIT_ORDER = ["편", "장", "절", "관"]
+UNIT_RE = re.compile(r"^제\s*\d+\s*(?:의\s*\d+\s*)?(편|장|절|관|항)(?:\s*의\s*\d+)?(?![가-힣])")
+UNIT_ORDER = ["편", "장", "절", "관", "항"]
 
 
 def unit_kind(text):
@@ -432,7 +435,7 @@ def convert(xml_path, out_root, today, listinfo):
             k = unit_kind(t)
             if k:
                 lines.extend(heading(level_of[k], t))
-            elif (len(t) <= 40 and "\n" not in t and not t.endswith(".")
+            elif (len(t) <= 20 and "\n" not in t and not t.endswith(".")
                   and not re.fullmatch(r"\d{4}\s*년.*일", t)):
                 lines.extend(heading(2, t))
             else:
@@ -462,7 +465,7 @@ def convert(xml_path, out_root, today, listinfo):
             kindb = (b.findtext("별표구분") or "별표").strip()
             no = (b.findtext("별표번호") or "").lstrip("0") or "0"
             br = (b.findtext("별표가지번호") or "").lstrip("0")
-            lab = f"[{kindb} {no}" + (f"의{br}" if br else "") + "]"
+            lab = (f"[{kindb} {no}" + (f"의{br}" if br else "") + "]") if no != "0" else f"[{kindb}]"
             bt = node_text(b.find("별표제목")).strip()
             lines.extend(heading(3, f"{lab} {bt}".strip()))
             links = []
