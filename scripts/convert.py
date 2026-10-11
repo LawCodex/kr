@@ -83,7 +83,7 @@ BODY_SLUGS = {
     "행정자치부령": "government-administration-home-affairs",
     "환경부령": "environment",
     "경제기획원령": "economic-planning-board",
-    "여성가족부령": "gender-equality-family-2010",
+    "여성가족부령": "gender-equality-family-former",
     "교육인적자원부령": "education-human-resources",
     "국토해양부령": "land-transport-maritime",
     "건설교통부령": "construction-transportation",

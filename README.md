@@ -16,15 +16,15 @@ law.go.kr Open API. Nothing is translated or summarised.
 
 | Directory | 법령 종류 | Files |
 | --- | --- | ---: |
-| `constitution/` | 헌법 — Constitution of the Republic of Korea (대한민국헌법) | __CONSTITUTION__ |
-| `laws/` | 법률 — Acts of the National Assembly (plus 1 대통령긴급명령, a presidential emergency order with the force of law) | __LAWS__ |
-| `presidential-decrees/` | 대통령령 — Presidential Decrees (시행령, 규정, 직제 ...) | __PD__ |
-| `ordinances/` | 총리령 · 부령 — Ordinances of the Prime Minister and of the Ministries (시행규칙 ...) | __ORD__ |
-| `rules/` | 규칙 — Rules of the National Assembly, Supreme Court, Constitutional Court, election commissions and Board of Audit and Inspection | __RULES__ |
-| **Total** | | **__TOTAL__** |
+| `constitution/` | 헌법 — Constitution of the Republic of Korea (대한민국헌법) | 1 |
+| `laws/` | 법률 — Acts of the National Assembly (1,725, plus 1 대통령긴급명령 — 포획심판령 of 1952, an emergency order with the force of law) | 1,726 |
+| `presidential-decrees/` | 대통령령 — Presidential Decrees (시행령, 규정, 직제 ...) | 1,990 |
+| `ordinances/` | 총리령 · 부령 — Ordinances of the Prime Minister and of the Ministries (시행규칙 ...) | 1,528 |
+| `rules/` | 규칙 (bonus, also exposed by the API) — Rules of the National Assembly, Supreme Court, Constitutional Court, election commissions and Board of Audit and Inspection | 383 |
+| **Total** | | **5,628** |
 
 This is every entry of the law.go.kr current-law list (`lawSearch.do?target=law`, which only
-returns 현행 = in-force versions): __LISTED__ entries on the retrieval date.
+returns 현행 = in-force versions): 5,628 entries on the retrieval date.
 
 ### Not covered
 
@@ -64,8 +64,8 @@ rules/<body>/<법령ID>-<romanized title>.md
   법령ID to keep directories under 1,000 files.
 - Ordinances are grouped by issuing ministry, using the ministry name in the ordinance's
   kind (e.g. 법무부령 → `justice/`). A few ordinances still carry the name of a ministry that
-  has since been reorganised (e.g. 건설교통부령, 노동부령); they are grouped under that
-  historical name.
+  has since been reorganised (e.g. 건설교통부령, 노동부령, 여성가족부령 → `gender-equality-family-former/`);
+  they are grouped under that historical name.
 
 ### Document format
 
